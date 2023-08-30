@@ -1,6 +1,9 @@
 .app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  text-align: center;
+  min-width: 375px;
+  width: 50%;
   gap: 0.5rem;
+  margin: 0 auto; 
 }

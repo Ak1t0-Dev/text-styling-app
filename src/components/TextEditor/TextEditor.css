@@ -1,13 +1,27 @@
 .editor {
-    border:3px solid gray;
-    border-radius: gray;
-    width:80%;
+    border:2px solid #ccc;
+    border-radius: 0.5rem;
     height: 40vh;
+    padding: 0.5rem;
 }
 
-.button-list {
+.styles-container {
     margin-top: 0.5rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 0.5rem;
+}
+
+.styles-list {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.divider{
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin: 0.5rem 0;
 }

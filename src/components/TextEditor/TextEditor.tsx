@@ -16,22 +16,23 @@ export const TextEditor = () => {
 
   return (
     <>
-      <div className="button-list">
-        <div>
+      <div className="styles-container">
+        <h1>Text Styling App</h1>
+        <div className="styles-list">
           <Button
             inlineStyle={"BOLD"}
-            title={"BOLD"}
+            title={"bold"}
             editorState={editorState}
             onClick={handleClick}
           />
           <Button
             inlineStyle={"ITALIC"}
-            title={"ITALIC"}
+            title={"italic"}
             editorState={editorState}
             onClick={handleClick}
           />
         </div>
-        <div>
+        <div className="styles-list">
           {Object.keys(COLORS).map((color) => (
             <Button
               key={color}
@@ -42,7 +43,7 @@ export const TextEditor = () => {
             />
           ))}
         </div>
-        <div>
+        <div className="styles-list">
           {Object.keys(FONTSIZE).map((size) => (
             <Button
               key={size}
@@ -54,6 +55,7 @@ export const TextEditor = () => {
           ))}
         </div>
       </div>
+      <div className="divider"></div>
       <div className="editor">
         <Editor
           editorState={editorState}

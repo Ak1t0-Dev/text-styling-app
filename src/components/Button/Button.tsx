@@ -1,5 +1,5 @@
 import { EditorState } from "draft-js";
-import React from "react";
+import "./Button.css";
 
 interface ButtonProps {
   editorState: EditorState;
@@ -9,5 +9,9 @@ interface ButtonProps {
 }
 
 export const Button = ({ inlineStyle, title, onClick }: ButtonProps) => {
-  return <button onClick={() => onClick(inlineStyle)}>{title}</button>;
+  return (
+    <span className="styleButton" onClick={() => onClick(inlineStyle)}>
+      {title}
+    </span>
+  );
 };
