@@ -3,36 +3,45 @@ import { useState } from "react";
 import "draft-js/dist/Draft.css";
 import "./TextEditor.css";
 import { Button } from "../Button/Button";
-import { customStyleMap } from "../../constants/customStyles";
+import { COLORS, customStyleMap } from "../../constants/customStyles";
 
 export const TextEditor = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
 
-  const toggleBold = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
-  };
-
-  const toggleItalic = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
-  };
-
-  const toggleRed = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "red"));
-  };
-
-  const togglePurple = () => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, "purple"));
+  const handleClick = (inlineStyle: string) => {
+    setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
 
   return (
     <>
       <div className="button-list">
-        <Button onClick={toggleBold} title={"BOLD"} />
-        <Button onClick={toggleItalic} title={"ITALIC"} />
-        <Button onClick={toggleRed} title={"red"} />
-        <Button onClick={togglePurple} title={"purple"} />
+        <div>
+          <Button
+            inlineStyle={"BOLD"}
+            title={"BOLD"}
+            editorState={editorState}
+            onClick={handleClick}
+          />
+          <Button
+            inlineStyle={"ITALIC"}
+            title={"ITALIC"}
+            editorState={editorState}
+            onClick={handleClick}
+          />
+        </div>
+        <div>
+          {Object.keys(COLORS).map((color) => (
+            <Button
+              key={color}
+              inlineStyle={color}
+              title={color}
+              editorState={editorState}
+              onClick={handleClick}
+            />
+          ))}
+        </div>
       </div>
       <div className="editor">
         <Editor
