@@ -15,7 +15,7 @@ export const TextEditor = () => {
 
   return (
     <>
-      <div>
+      <div className="button-list">
         <Button onClick={toggleBold} title={"BOLD"} />
       </div>
       <div className="editor">
