@@ -3,7 +3,7 @@ import { useState } from "react";
 import "draft-js/dist/Draft.css";
 import "./TextEditor.css";
 import { Button } from "../Button/Button";
-import { COLORS, customStyleMap } from "../../constants/customStyles";
+import { COLORS, FONTSIZE, customStyleMap } from "../../constants/customStyles";
 
 export const TextEditor = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -37,6 +37,17 @@ export const TextEditor = () => {
               key={color}
               inlineStyle={color}
               title={color}
+              editorState={editorState}
+              onClick={handleClick}
+            />
+          ))}
+        </div>
+        <div>
+          {Object.keys(FONTSIZE).map((size) => (
+            <Button
+              key={size}
+              inlineStyle={size}
+              title={size}
               editorState={editorState}
               onClick={handleClick}
             />
