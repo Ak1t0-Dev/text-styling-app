@@ -13,10 +13,15 @@ export const TextEditor = () => {
     setEditorState(RichUtils.toggleInlineStyle(editorState, "BOLD"));
   };
 
+  const toggleItalic = () => {
+    setEditorState(RichUtils.toggleInlineStyle(editorState, "ITALIC"));
+  };
+
   return (
     <>
       <div className="button-list">
         <Button onClick={toggleBold} title={"BOLD"} />
+        <Button onClick={toggleItalic} title={"ITALIC"} />
       </div>
       <div className="editor">
         <Editor
