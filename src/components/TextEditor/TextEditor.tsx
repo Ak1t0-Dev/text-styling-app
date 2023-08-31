@@ -1,4 +1,4 @@
-import { Editor, EditorState, RichUtils } from "draft-js";
+import { Editor, EditorState, Modifier, RichUtils } from "draft-js";
 import { useState } from "react";
 import "draft-js/dist/Draft.css";
 import "./TextEditor.css";
@@ -10,25 +10,66 @@ export const TextEditor = () => {
     EditorState.createEmpty()
   );
 
-  const handleClick = (inlineStyle: string) => {
-    setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+  const handleClick = (style: string, type: Object) => {
+    if (Object.keys(type).length > 0) {
+      customStyleChange(style, type);
+    } else {
+      setEditorState(RichUtils.toggleInlineStyle(editorState, style));
+    }
+  };
+
+  const customStyleChange = (style: string, type: Object) => {
+    // gets the current cursor/selection state
+    const selection = editorState.getSelection();
+
+    // removes the specified inline styles from the entire selected range and get the current one
+    const nextContentState = Object.keys(type).reduce(
+      (contentState, inlineStyle) => {
+        return Modifier.removeInlineStyle(contentState, selection, inlineStyle);
+      },
+      editorState.getCurrentContent()
+    );
+
+    // returns a new EditorState object with the specified ContentState applied as the new currentContent
+    let nextEditorState = EditorState.push(
+      editorState,
+      nextContentState,
+      "change-inline-style"
+    );
+
+    // returns an OrderedSet<string> that represents the "current" inline style for the editor
+    const currentStyle = editorState.getCurrentInlineStyle();
+
+    // returns true when the anchor and focus keys are
+    // the same /and/ the anchor and focus offsets are the same
+    if (selection.isCollapsed() && currentStyle) {
+      nextEditorState = currentStyle.reduce((state, style) => {
+        return RichUtils.toggleInlineStyle(state!, style!);
+      }, nextEditorState);
+    }
+
+    if (!currentStyle.has(style)) {
+      nextEditorState = RichUtils.toggleInlineStyle(nextEditorState, style);
+    }
+    setEditorState(nextEditorState);
   };
 
   return (
     <>
       <div className="styles-container">
-        <h1>Text Styling App</h1>
         <div className="styles-list">
           <Button
             inlineStyle={"BOLD"}
             title={"bold"}
             editorState={editorState}
+            type={{}}
             onClick={handleClick}
           />
           <Button
             inlineStyle={"ITALIC"}
             title={"italic"}
             editorState={editorState}
+            type={{}}
             onClick={handleClick}
           />
         </div>
@@ -39,6 +80,7 @@ export const TextEditor = () => {
               inlineStyle={color}
               title={color}
               editorState={editorState}
+              type={COLORS}
               onClick={handleClick}
             />
           ))}
@@ -50,6 +92,7 @@ export const TextEditor = () => {
               inlineStyle={size}
               title={size}
               editorState={editorState}
+              type={FONTSIZE}
               onClick={handleClick}
             />
           ))}
