@@ -40,14 +40,14 @@ export const TextEditor = () => {
     // returns an OrderedSet<string> that represents the "current" inline style for the editor
     const currentStyle = editorState.getCurrentInlineStyle();
 
-    // returns true when the anchor and focus keys are
-    // the same /and/ the anchor and focus offsets are the same
-    if (selection.isCollapsed() && currentStyle) {
+    // unset style override for the current style when selection is collapsed
+    if (selection.isCollapsed()) {
       nextEditorState = currentStyle.reduce((state, style) => {
         return RichUtils.toggleInlineStyle(state!, style!);
       }, nextEditorState);
     }
 
+    // apply the style when it is being toggled on
     if (!currentStyle.has(style)) {
       nextEditorState = RichUtils.toggleInlineStyle(nextEditorState, style);
     }
