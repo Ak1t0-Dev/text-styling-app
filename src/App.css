@@ -7,3 +7,9 @@
   gap: 0.5rem;
   margin: 0 auto; 
 }
+
+.app-title {
+  margin: 2rem 0 0 0; 
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+}

@@ -57,6 +57,7 @@ export const TextEditor = () => {
   return (
     <>
       <div className="styles-container">
+        <div className="divider"></div>
         <div className="styles-list">
           <Button
             inlineStyle={"BOLD"}
