@@ -5,12 +5,13 @@ interface ButtonProps {
   editorState: EditorState;
   inlineStyle: string;
   title: string;
-  onClick: (inlineStyle: string) => void;
+  type: Object;
+  onClick: (inlineStyle: string, type: Object) => void;
 }
 
-export const Button = ({ inlineStyle, title, onClick }: ButtonProps) => {
+export const Button = ({ inlineStyle, title, type, onClick }: ButtonProps) => {
   return (
-    <span className="styleButton" onClick={() => onClick(inlineStyle)}>
+    <span className="styleButton" onClick={() => onClick(inlineStyle, type)}>
       {title}
     </span>
   );

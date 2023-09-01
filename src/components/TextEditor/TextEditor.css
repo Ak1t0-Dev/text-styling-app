@@ -3,6 +3,7 @@
     border-radius: 0.5rem;
     height: 40vh;
     padding: 0.5rem;
+    overflow: scroll;
 }
 
 .styles-container {
