@@ -62,14 +62,12 @@ export const TextEditor = () => {
           <Button
             inlineStyle={"BOLD"}
             title={"bold"}
-            editorState={editorState}
             type={{}}
             onClick={handleClick}
           />
           <Button
             inlineStyle={"ITALIC"}
             title={"italic"}
-            editorState={editorState}
             type={{}}
             onClick={handleClick}
           />
@@ -80,7 +78,6 @@ export const TextEditor = () => {
               key={color}
               inlineStyle={color}
               title={color}
-              editorState={editorState}
               type={COLORS}
               onClick={handleClick}
             />
@@ -92,7 +89,6 @@ export const TextEditor = () => {
               key={size}
               inlineStyle={size}
               title={size}
-              editorState={editorState}
               type={FONTSIZE}
               onClick={handleClick}
             />
