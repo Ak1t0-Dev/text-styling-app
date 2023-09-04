@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^12.1.5"
+    "@testing-library/react": "^12.1.5",
+    "cypress": "^13.1.0"
   }
 }
